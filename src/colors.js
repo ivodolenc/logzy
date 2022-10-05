@@ -40,7 +40,6 @@ const c = (n, m) => {
   const x = `${cr}✖ logzy > 'color' not found > c('${n}', ${m}) ${r}`
 
   if ($c[n] !== undefined) return `${v}${m}${r}`
-
   return x
 }
 

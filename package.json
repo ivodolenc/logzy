@@ -1,6 +1,6 @@
 {
   "name": "logzy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Modern stylizer for terminal logs.",
   "author": "Ivo Dolenc",
   "license": "MIT",
@@ -25,13 +25,9 @@
     "terminal-log",
     "terminal-colors",
     "terminal-styles",
-    "node-styles",
-    "node-colors",
-    "node-log",
     "logger"
   ],
   "scripts": {
-    "log": "node scripts/play.js",
-    "release": "npm release"
+    "log": "node scripts/play.js"
   }
 }

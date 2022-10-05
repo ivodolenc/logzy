@@ -10,13 +10,12 @@ const $s = {
 }
 
 const s = (n, m) => {
+  const cr = `\x1b[91m`
   const r = `\x1b[0m`
   const v = `\x1b[${$s[n]}m`
-  const cr = `\x1b[91m`
   const x = `${cr}✖ logzy > 'style' not found > c('${n}', ${m}) ${r}`
 
   if ($s[n] !== undefined) return `${v}${m}${r}`
-
   return x
 }
 

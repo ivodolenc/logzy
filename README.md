@@ -9,7 +9,6 @@ Modern stylizer for terminal logs.
 - Adds life to the console log 🥳
 - Ultra lightweight 🪶
 - Ridiculously easy to use 🧑‍💻
-- Provides official presets 💎
 - Really fast 🚀
 
 ## Quick Start
@@ -98,31 +97,10 @@ log.reset() // Reset text
 log.underline() // Underlined text
 ```
 
-### Presets
-
-```js
-log.details() // Indented text without styling
-log.info() // Icon + bold cyan text
-log.success() // Icon + bold lime text
-log.warn() // Icon + bold yellow text
-log.error() // Icon + bold rose text
-```
-
-```js
-log.details2() // Indented text without styling
-log.info2() // BgCyan box + icon + bold cyan text
-log.success2() // BgGreen box + icon + bold lime text
-log.warn2() // BgYellow box + icon + bold yellow text
-log.error2() // BgRed box + icon + bold rose text
-```
-
 ### Utils
 
 ```js
 import { c, s } from 'logzy'
-
-// c stands for color
-// s stands for style
 
 c(colorName, message) // Wraps the message with raw color and reset codes
 s(styleName, message) // Wraps the message with raw style and reset codes

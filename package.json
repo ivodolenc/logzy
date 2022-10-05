@@ -1,0 +1,37 @@
+{
+  "name": "logzy",
+  "version": "0.0.1",
+  "description": "Modern stylizer for terminal logs.",
+  "author": "Ivo Dolenc",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/ivodolenc",
+  "homepage": "https://github.com/ivodolenc/logzy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivodolenc/logzy"
+  },
+  "bugs": "https://github.com/ivodolenc/logzy/issues",
+  "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "log",
+    "logzy",
+    "console",
+    "terminal",
+    "console-log",
+    "terminal-log",
+    "terminal-colors",
+    "terminal-styles",
+    "node-styles",
+    "node-colors",
+    "node-log",
+    "logger"
+  ],
+  "scripts": {
+    "log": "node scripts/play.js",
+    "release": "npm release"
+  }
+}

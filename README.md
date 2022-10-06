@@ -5,9 +5,9 @@ Modern stylizer for console log.
 ## Features
 
 - Zero dependencies! Nothing! None!
+- Ultra lightweight **~1kb min**
 - Flexible and user friendly API
 - Adds life to the console log
-- Ultra lightweight
 - Ridiculously easy to use
 - Really fast
 

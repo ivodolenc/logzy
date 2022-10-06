@@ -1,15 +1,15 @@
 # logzy
 
-Modern stylizer for terminal logs.
+Modern stylizer for console log.
 
 ## Features
 
-- Zero dependencies! Nothing! None! 👌
-- Flexible and user friendly API 🦾
-- Adds life to the console log 🥳
-- Ultra lightweight 🪶
-- Ridiculously easy to use 🧑‍💻
-- Really fast 🚀
+- Zero dependencies! Nothing! None!
+- Flexible and user friendly API
+- Adds life to the console log
+- Ultra lightweight
+- Ridiculously easy to use
+- Really fast
 
 ## Quick Start
 
@@ -33,92 +33,189 @@ Explore the [examples](examples/).
 
 ## API
 
-### Core
+### Helpers
+
+- `log.$(message)` is a shortcut for default `console.log(message)`
+- `log.n()` inserts a new line break
 
 ```js
-logzy() // Default console log
-$log() // Default console log
-log.$() // Default console log
-log.n() // New line
+import { log } from 'logzy'
+
+log.$()
+log.n()
 ```
 
 ### Text colors
 
+Sets a new text color.
+
+- `log.color(message)`
+
 ```js
-log.amber() // Amber text
-log.black() // Black text
-log.blue() // Blue text
-log.cyan() // Cyan text
-log.gray() // Gray text
-log.green() // Green text
-log.indigo() // Indigo text
-log.lime() // Lime text
-log.magenta() // Magenta text
-log.pink() // Pink text
-log.red() // Red text
-log.rose() // Rose text
-log.silver() // Silver text
-log.sky() // Sky text
-log.white() // White text
-log.yellow() // Yellow text
+import { log } from 'logzy'
+
+log.amber()
+log.black()
+log.blue()
+log.cyan()
+log.gray()
+log.green()
+log.indigo()
+log.lime()
+log.magenta()
+log.pink()
+log.red()
+log.rose()
+log.silver()
+log.sky()
+log.white()
+log.yellow()
 ```
 
 ### Background colors
 
+Sets a new background color.
+
+- `log.bgColor(message)`
+
 ```js
-log.bgAmber() // Amber bg
-log.bgBlack() // Black bg
-log.bgBlue() // Blue bg
-log.bgCyan() // Cyan bg
-log.bgGray() // Gray bg
-log.bgGreen() // Green bg
-log.bgIndigo() // Indigo bg
-log.bgLime() // Lime bg
-log.bgMagenta() // Magenta bg
-log.bgPink() // Pink bg
-log.bgRed() // Red bg
-log.bgRose() // Rose bg
-log.bgSilver() // Silver bg
-log.bgSky() // Sky bg
-log.bgWhite() // White bg
-log.bgYellow() // Yellow bg
+import { log } from 'logzy'
+
+log.bgAmber()
+log.bgBlack()
+log.bgBlue()
+log.bgCyan()
+log.bgGray()
+log.bgGreen()
+log.bgIndigo()
+log.bgLime()
+log.bgMagenta()
+log.bgPink()
+log.bgRed()
+log.bgRose()
+log.bgSilver()
+log.bgSky()
+log.bgWhite()
+log.bgYellow()
 ```
 
 ### Text Styles
 
+Sets a new text style.
+
+- `log.style(message)`
+
 ```js
-log.bold() // Bold text
-log.crossout() // Crossed out text
-log.darken() // Darken text
-log.hidden() // Hidden text
-log.invert() // Inverted text
-log.italic() // Italic text
-log.reset() // Reset text
-log.underline() // Underlined text
+import { log } from 'logzy'
+
+log.bold()
+log.crossout()
+log.darken()
+log.hidden()
+log.invert()
+log.italic()
+log.reset()
+log.underline()
 ```
 
-### Utils
+## Utils
+
+### Function u()
+
+A tiny utility function intended for customization. Sets a new color, background or style.
+
+- **u** stands for **use** (use color, use style, use key, use utility etc.)
+- Wraps the message with raw codes
 
 ```js
-import { c, s } from 'logzy'
+import { u } from 'logzy'
 
-c(colorName, message) // Wraps the message with raw color and reset codes
-s(styleName, message) // Wraps the message with raw style and reset codes
+u(key, message)
 ```
 
-```js
-import { n, r } from 'logzy'
+### Keys
 
-n // Raw new line code
-r // Raw reset code
+List of all available values for `u()` function.
+
+- Must be set as a lowercase 'string' ('cyan', 'bg-sky', 'bold' etc.)
+
+| Text Colors | Background Colors | Text Styles |
+| ----------- | ----------------- | ----------- |
+| amber       | bg-amber          | bold        |
+| black       | bg-black          | crossout    |
+| blue        | bg-blue           | darken      |
+| cyan        | bg-cyan           | hidden      |
+| gray        | bg-gray           | invert      |
+| green       | bg-green          | italic      |
+| indigo      | bg-indigo         | reset       |
+| lime        | bg-lime           | underline   |
+| magenta     | bg-magenta        |             |
+| pink        | bg-pink           |             |
+| red         | bg-red            |             |
+| rose        | bg-rose           |             |
+| silver      | bg-silver         |             |
+| sky         | bg-sky            |             |
+| white       | bg-white          |             |
+| yellow      | bg-yellow         |             |
+
+### Const n
+
+Utility constant intended for customization. Inserts a new line break.
+
+- **n** stands for **new line**
+- Provides raw new line code
+
+```js
+import { n } from 'logzy'
+
+n
 ```
 
-### Named imports
+### Const r
+
+Utility constant intended for special use cases. Sets a raw reset code at the end of styling.
+
+- **r** stands for **reset**
+- Provides raw reset code
 
 ```js
-import { log as logzy, c as color, s as style, n as newLine } from 'logzy'
+import { r } from 'logzy'
 
-logzy.$(style('underline', color('lime', 'Underlined + lime text')) + newLine)
+r
+```
+
+## Presets
+
+It's super easy to extend defaults and create unique custom presets.
+
+Here are some examples:
+
+```js
+import { log, u } from 'logzy'
+
+log.details = v => console.log(`  ${v}`)
+log.info = v => console.log(u('bold', u('cyan', `> ${v}`)))
+log.success = v => console.log(u('bold', u('lime', `✔ ${v}`)))
+log.warn = v => console.log(u('bold', u('yellow', `! ${v}`)))
+log.error = v => console.log(u('bold', u('rose', `✖ ${v}`)))
+
+log.details('logzy is fire')
+log.info('logzy is fire')
+log.success('logzy is fire')
+log.warn('logzy is fire')
+log.error('logzy is fire')
+```
+
+## Named imports
+
+It is possible to combine native JS import features.
+
+Useful if you want to extend names for better readability.
+
+```js
+import { log as logzy, u as use, n as newLine } from 'logzy'
+
+logzy.$(use('underline', use('lime', 'Underlined + lime text')) + newLine)
 ```
 
 ## Show Support

@@ -1,15 +1,13 @@
-import { log, c, s, n } from 'logzy'
+import { log, u } from 'logzy'
 
-/**
- * Full API is listed on the repo home page.
- *
- * @link https://github.com/ivodolenc/logzy#API
- *
- * log.preset(message)
- */
+log.details = v => console.log(`  ${v}`)
+log.info = v => console.log(u('bold', u('cyan', `> ${v}`)))
+log.success = v => console.log(u('bold', u('lime', `✔ ${v}`)))
+log.warn = v => console.log(u('bold', u('yellow', `! ${v}`)))
+log.error = v => console.log(u('bold', u('rose', `✖ ${v}`)))
 
-// Set new preset
-log.myPreset = v => console.log(s('underline', c('lime', v)) + n)
-
-// Use custom preset
-log.myPreset('My new custom preset')
+log.details('logzy is fire')
+log.info('logzy is fire')
+log.success('logzy is fire')
+log.warn('logzy is fire')
+log.error('logzy is fire')

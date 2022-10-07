@@ -1,11 +1,14 @@
-# logzy
+<p align="center">
+  <img src=".assets/cover.png" />
+</p>
 
-Modern stylizer for console log.
+<h1 align="center">logzy</h1>
+<p align="center">Modern stylizer for console log.</p>
 
 ## Features
 
-- Zero dependencies! Nothing! None!
-- Ultra lightweight **~1kb min**
+- **Zero dependencies!** Nothing! None!
+- Ultralight! Less than **1kb min**
 - Flexible and user friendly API
 - Adds life to the console log
 - Ridiculously easy to use
@@ -47,9 +50,9 @@ log.n()
 
 ### Text colors
 
-Sets a new text color.
-
 - `log.color(message)`
+
+Sets a new text color.
 
 ```js
 import { log } from 'logzy'
@@ -74,9 +77,9 @@ log.yellow()
 
 ### Background colors
 
-Sets a new background color.
-
 - `log.bgColor(message)`
+
+Sets a new background color.
 
 ```js
 import { log } from 'logzy'
@@ -101,9 +104,9 @@ log.bgYellow()
 
 ### Text Styles
 
-Sets a new text style.
-
 - `log.style(message)`
+
+Sets a new text style.
 
 ```js
 import { log } from 'logzy'
@@ -122,10 +125,11 @@ log.underline()
 
 ### Function u()
 
-A tiny utility function intended for customization. Sets a new color, background or style.
-
+- `u(key, message)`
 - **u** stands for **use** (use color, use style, use key, use utility etc.)
 - Wraps the message with raw codes
+
+A tiny utility function intended for customization. Sets a new color, background or style.
 
 ```js
 import { u } from 'logzy'
@@ -133,11 +137,7 @@ import { u } from 'logzy'
 u(key, message)
 ```
 
-### Keys
-
-List of all available values for `u()` function.
-
-- Must be set as a lowercase 'string' ('cyan', 'bg-sky', 'bold' etc.)
+List of all available keys :
 
 | Text Colors | Background Colors | Text Styles |
 | ----------- | ----------------- | ----------- |
@@ -160,10 +160,10 @@ List of all available values for `u()` function.
 
 ### Const n
 
-Utility constant intended for customization. Inserts a new line break.
-
 - **n** stands for **new line**
 - Provides raw new line code
+
+Utility constant intended for customization. Inserts a new line break.
 
 ```js
 import { n } from 'logzy'
@@ -173,10 +173,10 @@ n
 
 ### Const r
 
-Utility constant intended for special use cases. Sets a raw reset code at the end of styling.
-
 - **r** stands for **reset**
 - Provides raw reset code
+
+Utility constant intended for special use cases. Sets a raw reset code at the end of styling.
 
 ```js
 import { r } from 'logzy'

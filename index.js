@@ -52,7 +52,7 @@ const log = {
 
 const u = (k, m) => {
   if ($u[k] !== undefined) return `\x1b[${$u[k]}m${m}${r}`
-  return `\x1b[91m` + `✖ logzy > key not found > u(${k}, ${m})${r}`
+  return `\x1b[91m✖ logzy > key not found > u(${k}, ${m})${r}`
 }
 
 for (const k in $u) log[k] = v => console.log(u(k, v))

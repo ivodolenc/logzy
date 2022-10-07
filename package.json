@@ -1,23 +1,21 @@
 {
   "name": "logzy",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Modern stylizer for console log.",
   "author": "Ivo Dolenc",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/ivodolenc",
+  "repository": "ivodolenc/logzy",
   "homepage": "https://github.com/ivodolenc/logzy",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ivodolenc/logzy"
-  },
-  "bugs": "https://github.com/ivodolenc/logzy/issues",
+  "funding": "https://github.com/sponsors/ivodolenc",
   "type": "module",
-  "main": "src/index.js",
+  "main": "index.js",
   "files": [
-    "src"
+    "index.js"
   ],
   "keywords": [
     "log",
+    "cli",
+    "ansi",
     "logzy",
     "console",
     "terminal",

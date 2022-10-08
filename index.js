@@ -1,36 +1,28 @@
-const $u = {
-  amber: 33,
-  black: 30,
-  blue: 94,
-  cyan: 96,
-  gray: 90,
-  green: 32,
-  indigo: 34,
-  lime: 92,
-  magenta: 35,
-  pink: 95,
-  red: 31,
-  rose: 91,
-  silver: 37,
-  sky: 36,
-  white: 97,
-  yellow: 93,
-  'bg-amber': 43,
-  'bg-black': 40,
-  'bg-blue': 104,
-  'bg-cyan': 106,
-  'bg-gray': 100,
-  'bg-green': 42,
-  'bg-indigo': 44,
-  'bg-lime': 102,
-  'bg-magenta': 45,
-  'bg-pink': 105,
-  'bg-red': 41,
-  'bg-rose': 101,
-  'bg-silver': 47,
-  'bg-sky': 46,
-  'bg-white': 107,
-  'bg-yellow': 103,
+const r = `\x1b[0m`,
+  n = `\n`
+const log = {
+  $: v => console.log(v),
+  n: () => console.log()
+}
+let $c = {
+  amber: [33, 43],
+  black: [30, 40],
+  blue: [94, 104],
+  cyan: [96, 106],
+  gray: [90, 100],
+  green: [32, 42],
+  indigo: [34, 104],
+  lime: [92, 102],
+  magenta: [35, 45],
+  pink: [95, 105],
+  red: [31, 41],
+  rose: [91, 101],
+  silver: [37, 47],
+  sky: [36, 46],
+  white: [97, 107],
+  yellow: [93, 103]
+}
+let $k = {
   bold: 1,
   crossout: 9,
   darken: 2,
@@ -40,21 +32,13 @@ const $u = {
   reset: 0,
   underline: 4
 }
-
-const r = `\x1b[0m`
-const n = `\n`
-const logzy = v => console.log(v)
-const $log = v => console.log(v)
-const log = {
-  $: v => console.log(v),
-  n: () => console.log()
+for (let k in $c) {
+  $k[k] = $c[k][0]
+  $k[`bg-${k}`] = $c[k][1]
 }
-
 const u = (k, m) => {
-  if ($u[k] !== undefined) return `\x1b[${$u[k]}m${m}${r}`
+  if ($k[k] !== undefined) return `\x1b[${$k[k]}m${m}${r}`
   return `\x1b[91m✖ logzy > key not found > u(${k}, ${m})${r}`
 }
-
-for (const k in $u) log[k] = v => console.log(u(k, v))
-
-export { logzy, $log, log, u, n, r }
+for (let k in $k) log[k] = v => console.log(u(k, v))
+export { log, u, n, r }

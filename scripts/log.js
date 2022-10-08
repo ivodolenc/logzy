@@ -1,3 +1,3 @@
-import { logzy } from '../index.js'
+import { log } from '../index.js'
 
-logzy('logzy is fire 🔥')
+log.$('logzy is fire 🔥')

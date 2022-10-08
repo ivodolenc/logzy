@@ -32,7 +32,7 @@ let $k = {
   reset: 0,
   underline: 4
 }
-for (let k in $c) {
+for (let k of Object.keys($c)) {
   $k[k] = $c[k][0]
   $k[`bg-${k}`] = $c[k][1]
 }
@@ -40,5 +40,5 @@ const u = (k, m) => {
   if ($k[k] !== undefined) return `\x1b[${$k[k]}m${m}${r}`
   return `\x1b[91m✖ logzy > key not found > u(${k}, ${m})${r}`
 }
-for (let k in $k) log[k] = v => console.log(u(k, v))
+for (let k of Object.keys($k)) log[k] = v => console.log(u(k, v))
 export { log, u, n, r }

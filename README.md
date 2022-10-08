@@ -3,12 +3,12 @@
 </p>
 
 <h1 align="center">logzy</h1>
-<p align="center">Modern stylizer for console log.</p>
+<p align="center">Ultralight and simple stylizer for console logs.</p>
 
 ## Features
 
 - **Zero dependencies!** Nothing! None!
-- Ultralight! Less than **1kb min**
+- Ultralight! Less than **1kb**
 - Flexible and user friendly API
 - Adds life to the console log
 - Ridiculously easy to use

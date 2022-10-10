@@ -5,3 +5,4 @@
 - [Text styles](text-styles/)
 - [Presets](presets/)
 - [Customization](customization/)
+- [Global config](global-config/)

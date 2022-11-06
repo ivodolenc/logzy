@@ -1,9 +1,4 @@
-const r = `\x1b[0m`,
-  n = `\n`
-const log = {
-  $: v => console.log(v),
-  n: () => console.log()
-}
+import { inspect } from 'util'
 let $c = {
   amber: [33, 43],
   black: [30, 40],
@@ -34,11 +29,28 @@ let $k = {
 }
 for (let k of Object.keys($c)) {
   $k[k] = $c[k][0]
-  $k[`bg-${k}`] = $c[k][1]
+  $k[`bg_${k}`] = $c[k][1]
 }
-const u = (k, m) => {
-  if ($k[k] !== undefined) return `\x1b[${$k[k]}m${m}${r}`
-  return `\x1b[91m✖ logzy > key not found > u(${k}, ${m})${r}`
+let _ = v => `\x1b[${v}m`, cl = console.log
+let i = (v, d) => {
+  if (d === 'inspect') return inspect(v, { depth: null })
+  else if (d === 'json') return JSON.stringify(v, null, 2)
+  return v
 }
-for (let k of Object.keys($k)) log[k] = v => console.log(u(k, v))
-export { log, u, n, r }
+let u = (k, m, d) => {
+  let p = k.split(' '), s = ''
+  for (let v of p) {
+    let x = `${_(91)}✖ logzy > key "${v}" not found ${_(35)}> log('${k}', '${m}')${_(0)}`
+    if ($k[v]) s += _($k[v])
+    else throw new Error(x)
+  }
+  return `${s}${i(m, d)}${_(0)}`
+}
+const log = (k, m, d) => {
+  if (k && m) return cl(u(k, m, d))
+  else if (k) return cl(k)
+  return cl()
+}
+log.$ = (k, m, d) => u(k, m, d)
+for (let k of Object.keys($k)) log[k] = _($k[k])
+export { log }

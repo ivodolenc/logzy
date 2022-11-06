@@ -1,6 +1,6 @@
 {
   "name": "logzy",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "Ultralight and simple stylizer for console logs.",
   "author": "Ivo Dolenc",
   "license": "MIT",

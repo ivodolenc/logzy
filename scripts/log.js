@@ -1,3 +1,3 @@
 import { log } from '../index.js'
 
-log.$('logzy is fire 🔥')
+log('cyan bold', 'logzy is fire 🔥')

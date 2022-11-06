@@ -7,216 +7,151 @@
 
 ## Features
 
-- **Zero dependencies!** Nothing! None!
+- **Zero dependencies!**
 - Ultralight! Less than **1kb**
 - Flexible and user friendly API
-- Adds life to the console log
+- Supports Object debugging
+- Provides utils for advanced nesting
+- Adds life to the console.log
 - Ridiculously easy to use
 - Really fast
 
-## Quick Start
-
-1. Install `logzy` to your project
+## Installation
 
 ```sh
-yarn add -D logzy # or npm i -D logzy
+npm i -D logzy
 ```
-
-2. Import it in your project
-
-```js
-import { log } from 'logzy'
-
-log.$('logzy is fire 🔥')
-```
-
-## Examples
-
-Explore the [examples](examples/).
 
 ## API
 
-### Helpers
+### log()
 
-- `log.$(message)` is a shortcut for default `console.log(message)`
-- `log.n()` inserts a new line break
+Custom function for stylizing console messages.
+
+```js
+/**
+ * @function
+ * @param {String} keys - Accepts one or more values separated by a space.
+ * @param {*} message - Custom message. Can be anything.
+ * @param {String} debug - Enables debug mode for objects. Can be 'inspect' or 'json'.
+ * @return {String} - Returns a styled message, e.g. console.log(styledMessage)
+ */
+log(keys, message, debug)
+```
+
+```js
+// Examples
+
+import { log } from 'logzy'
+
+// Outputs a stylized message
+log('cyan', 'custom message...')
+log('lime bold underline', 33 * 77)
+log('black bold bg_white', message)
+
+// Outputs a stylized console object
+log('cyan italic', console, 'inspect')
+
+// Outputs a stylized object in JSON format
+log('sky italic bold', { a: 'b', c: 'd', e: 'f' }, 'json')
+
+// Outputs an unstylized message if only one param is specified
+log('logzy...')
+
+// Outputs a new line break if no params are specified
+log()
+```
+
+### Nesting & Customization
+
+Logzy comes with a built-in tiny utilities designed for nesting and raw customization.
+
+```js
+// Outputs a stylized message, e.g. `\x1b[96m\x1b[1m${message}\x1b[0m`
+log.$(keys, message, debug)
+
+// Outputs a single raw value, e.g. `\x1b[96m`
+log.key
+```
+
+These utils must be wrapped with `console.log` to actually output the styled message.
 
 ```js
 import { log } from 'logzy'
 
-log.$()
-log.n()
+// this is the same
+console.log(`${log.cyan}${log.bold}logzy is fire 🔥${log.reset}`)
+
+// as this
+console.log(log.$('cyan bold', 'logzy is fire 🔥'))
 ```
 
-### Text colors
-
-- `log.color(message)`
-
-Sets a new text color.
-
 ```js
+// Examples
+
 import { log } from 'logzy'
 
-log.amber()
-log.black()
-log.blue()
-log.cyan()
-log.gray()
-log.green()
-log.indigo()
-log.lime()
-log.magenta()
-log.pink()
-log.red()
-log.rose()
-log.silver()
-log.sky()
-log.white()
-log.yellow()
+const { $, bold, cyan, reset } = log
+
+console.log($('cyan bold underline', 'logzy is fire'))
+
+console.log(`${$('lime bold', 'logzy')} is ${$('rose italic', 'fire')}`)
+
+console.log(`${bold}${cyan}custom message...${reset}`)
 ```
 
-### Background colors
+### Debugging
 
-- `log.bgColor(message)`
+Also, Logzy supports object outputs with a node's `inspect` utility and native `JSON.stringify` method under the hood.
 
-Sets a new background color.
+By default, `debug` mode is disabled.
 
 ```js
+// Examples
+
 import { log } from 'logzy'
 
-log.bgAmber()
-log.bgBlack()
-log.bgBlue()
-log.bgCyan()
-log.bgGray()
-log.bgGreen()
-log.bgIndigo()
-log.bgLime()
-log.bgMagenta()
-log.bgPink()
-log.bgRed()
-log.bgRose()
-log.bgSilver()
-log.bgSky()
-log.bgWhite()
-log.bgYellow()
+// enables node's inspect utility
+log('cyan italic', console, 'inspect')
+
+const obj = {
+  a: 'logzy',
+  b: {
+    c: {
+      d: [1, 2, 3]
+    },
+    e: {
+      f: true
+    }
+  }
+}
+
+// enables JSON.stringify method
+log('lime bold', obj, 'json')
 ```
 
-### Text Styles
+## Keys
 
-- `log.style(message)`
-
-Sets a new text style.
-
-```js
-import { log } from 'logzy'
-
-log.bold()
-log.crossout()
-log.darken()
-log.hidden()
-log.invert()
-log.italic()
-log.reset()
-log.underline()
-```
-
-## Utils
-
-### Function u()
-
-- `u(key, message)`
-- **u** stands for **use** (use color, use style, use key, use utility etc.)
-- Wraps the message with raw codes
-
-A tiny utility function intended for customization. Sets a new color, background or style.
-
-```js
-import { u } from 'logzy'
-
-u(key, message)
-```
-
-List of all available keys :
+List of all available `keys`
 
 | Text Colors | Background Colors | Text Styles |
 | ----------- | ----------------- | ----------- |
-| amber       | bg-amber          | bold        |
-| black       | bg-black          | crossout    |
-| blue        | bg-blue           | darken      |
-| cyan        | bg-cyan           | hidden      |
-| gray        | bg-gray           | invert      |
-| green       | bg-green          | italic      |
-| indigo      | bg-indigo         | reset       |
-| lime        | bg-lime           | underline   |
-| magenta     | bg-magenta        |             |
-| pink        | bg-pink           |             |
-| red         | bg-red            |             |
-| rose        | bg-rose           |             |
-| silver      | bg-silver         |             |
-| sky         | bg-sky            |             |
-| white       | bg-white          |             |
-| yellow      | bg-yellow         |             |
-
-### Const n
-
-- **n** stands for **new line**
-- Provides raw new line code
-
-Utility constant intended for customization. Inserts a new line break.
-
-```js
-import { n } from 'logzy'
-
-n
-```
-
-### Const r
-
-- **r** stands for **reset**
-- Provides raw reset code
-
-Utility constant intended for special use cases. Sets a raw reset code at the end of styling.
-
-```js
-import { r } from 'logzy'
-
-r
-```
-
-## Presets
-
-It's super easy to extend defaults and create unique custom presets.
-
-Here are some examples:
-
-```js
-import { log, u } from 'logzy'
-
-log.details = v => console.log(`  ${v}`)
-log.info = v => console.log(u('bold', u('cyan', `> ${v}`)))
-log.success = v => console.log(u('bold', u('lime', `✔ ${v}`)))
-log.warn = v => console.log(u('bold', u('yellow', `! ${v}`)))
-log.error = v => console.log(u('bold', u('rose', `✖ ${v}`)))
-
-log.details('logzy is fire')
-log.info('logzy is fire')
-log.success('logzy is fire')
-log.warn('logzy is fire')
-log.error('logzy is fire')
-```
-
-## Named imports
-
-It is possible to combine native JS import features.
-
-Useful if you want to extend names for better readability.
-
-```js
-import { log as logzy, u as use, n as newLine } from 'logzy'
-
-logzy.$(use('underline', use('lime', 'Underlined + lime text')) + newLine)
-```
+| amber       | bg_amber          | bold        |
+| black       | bg_black          | crossout    |
+| blue        | bg_blue           | darken      |
+| cyan        | bg_cyan           | hidden      |
+| gray        | bg_gray           | invert      |
+| green       | bg_green          | italic      |
+| indigo      | bg_indigo         | reset       |
+| lime        | bg_lime           | underline   |
+| magenta     | bg_magenta        |             |
+| pink        | bg_pink           |             |
+| red         | bg_red            |             |
+| rose        | bg_rose           |             |
+| silver      | bg_silver         |             |
+| sky         | bg_sky            |             |
+| white       | bg_white          |             |
+| yellow      | bg_yellow         |             |
 
 ## Show Support
 

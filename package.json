@@ -1,16 +1,25 @@
 {
   "name": "logzy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Ultralight and simple stylizer for console logs.",
   "author": "Ivo Dolenc",
   "license": "MIT",
   "repository": "ivodolenc/logzy",
   "homepage": "https://github.com/ivodolenc/logzy",
   "funding": "https://github.com/sponsors/ivodolenc",
-  "type": "module",
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
-    "index.js"
+    "dist"
   ],
   "keywords": [
     "log",
@@ -25,6 +34,12 @@
     "logger"
   ],
   "scripts": {
-    "log": "node scripts/log.js"
+    "log": "tsx scripts/log.ts",
+    "build": "tsup src/index.ts --dts --format esm,cjs",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "typescript": "^4.8.4"
   }
 }

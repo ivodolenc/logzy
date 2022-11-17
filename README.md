@@ -8,8 +8,10 @@
 ## Features
 
 - **Zero dependencies!**
-- Ultralight! **~1.5kb** min
+- Ultralight! **~1.1kb** min
+- Integrated TypeScript support
 - Flexible and user friendly API
+- Allows _module_ and _commonjs_ imports
 - Supports Object debugging
 - Provides utils for advanced nesting
 - Adds life to the console.log
@@ -20,6 +22,16 @@
 
 ```sh
 npm i -D logzy
+```
+
+```js
+// module
+import { log } from 'logzy'
+```
+
+```js
+// commonjs
+const { log } = require('logzy')
 ```
 
 ## API
